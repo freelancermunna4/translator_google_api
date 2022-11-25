@@ -47,10 +47,12 @@ if(isset($_POST['translate'])){
         <form action="" method="POST">
             <div class="top">
                 <div class="left_box">
-                    <textarea name="left_inp"><?php if(isset($_POST['translate'])){echo $a; }?></textarea>
+                    <textarea id="left_inp" name="left_inp"><?php if(isset($_POST['translate'])){echo $a; }?></textarea>
+                    <p onclick="a_text()" class="a_btn">copy</p>
                 </div>
                 <div  class="right_box">
-                <textarea name="right_inp"><?php if(isset($_POST['translate'])){echo $b; }?></textarea>
+                <textarea id="right_inp" name="right_inp"><?php if(isset($_POST['translate'])){echo $b; }?></textarea>
+                <p onclick="b_text()" class="b_btn">copy</p>                
                 </div>
             </div>
             <div class="botton">
@@ -62,6 +64,35 @@ if(isset($_POST['translate'])){
         </form>
     </div>
 </section>
+
+<script>
+
+function a_text(e) {
+  // Get the text field
+  var copyText = document.getElementById("left_inp");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+}
+
+
+function b_text(e) {
+  // Get the text field
+  var copyText = document.getElementById("right_inp");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+}
+
+</script>
 
 </body>
 </html>

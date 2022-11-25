@@ -21,6 +21,21 @@ h1 {
     display: inline-block;
     
 }
+.left_box p{
+    text-align: center;
+    padding: 5px;
+    box-shadow: 0 0 5px gray;    
+}
+
+.right_box p{
+    text-align: center;
+    padding: 5px;
+    box-shadow: 0 0 5px gray;    
+}
+
+
+
+
 .right_box{
     float:right;
     
