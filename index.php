@@ -2,16 +2,31 @@
 
 require_once ('vendor/autoload.php');
 use \Statickidz\GoogleTranslate;
-
-$source = 'en';
-$target = 'bn';
-
-
 if(isset($_POST['translate'])){
+    if(!empty($_POST['left_inp']) && empty($_POST['right_inp'])){
+    $source = 'en';
+    $target = 'bn';
     $text = $_POST['left_inp'];
     $trans = new GoogleTranslate();
     $result = $trans->translate($source, $target, $text);
+
+    $a = $text;
+    $b = $result;
+    }elseif(empty($_POST['left_inp']) && !empty($_POST['right_inp'])){
+    $source = 'bn';
+    $target = 'en';
+    $text = $_POST['right_inp'];
+    $trans = new GoogleTranslate();
+    $result = $trans->translate($source, $target, $text);
+
+    $b = $text;
+    $a = $result;
+    }else{
+        header("location:index.php");
+    }
+
 }
+
 
 ?>
 
@@ -32,10 +47,10 @@ if(isset($_POST['translate'])){
         <form action="" method="POST">
             <div class="top">
                 <div class="left_box">
-                    <textarea name="left_inp"><?php if(isset($_POST['translate'])){echo $text; }?></textarea>
+                    <textarea name="left_inp"><?php if(isset($_POST['translate'])){echo $a; }?></textarea>
                 </div>
                 <div  class="right_box">
-                <textarea name="right_inp"><?php if(isset($_POST['translate'])){echo $result; }?></textarea>
+                <textarea name="right_inp"><?php if(isset($_POST['translate'])){echo $b; }?></textarea>
                 </div>
             </div>
             <div class="botton">
